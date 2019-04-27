@@ -36,7 +36,7 @@ def evaluate_res(sorted_res, rel_jud):
     p100 = 0
     for rank, tup in enumerate(sorted_res):
         try:
-            if rel_jud[tup[0]] > 0:
+            if rel_jud[tup[0]]>0 and tup[1]>0 :
                 if rank < 1:
                     p1 += 1
                 if rank < 3:
@@ -75,7 +75,7 @@ def get_ndcg(sorted_res, rel_jud, cutoff):
     '''
     for i in range(min(cutoff, len(sorted_res))):
         doc_id = sorted_res[i][0]
-        if doc_id in rel_jud:
+        if doc_id in rel_jud and sorted_res[i][1]>0:
             rel_level = rel_jud[doc_id]
         else:
             rel_level = 0
